@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "743635697971",
+    "project_id": "demonotification-dc371",
+    "storage_bucket": "demonotification-dc371.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743635697971:android:528d43d266d18f52527e46",
+        "android_client_info": {
+          "package_name": "com.nilesh.lms2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743635697971-fqrhipies7f0tclm4ud13lc0jnta1qua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDegmAHx7Cw2Qym4ZMZ5AQT_dv2ymcQe9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743635697971-fqrhipies7f0tclm4ud13lc0jnta1qua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743635697971:android:c061dc3f2a032be9527e46",
+        "android_client_info": {
+          "package_name": "com.satyam.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743635697971-fqrhipies7f0tclm4ud13lc0jnta1qua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDegmAHx7Cw2Qym4ZMZ5AQT_dv2ymcQe9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743635697971-fqrhipies7f0tclm4ud13lc0jnta1qua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
