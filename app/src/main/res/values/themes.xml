@@ -6,4 +6,16 @@
     </style>
 
     <style name="Theme.LMS2" parent="Base.Theme.LMS2" />
+    <style name="MyAppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">#7E1E1E</item>
+        <item name="colorPrimaryDark">#ffffff</item>
+        <item name="colorOnBackground">#C3C2C2</item>
+    </style>
+    <style name="editText">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/bg_edit</item>
+    </style>
 </resources>
