@@ -32,7 +32,7 @@ public class PlotAdapter extends FirebaseRecyclerAdapter<PlotModel,PlotAdapter.V
 
 //  TODO:      Glide.with().load(uploadCurrent.getmImageUrl()).into(holder.postImageView);
         holder.title_txt.setText(model.getTitle());
-        holder.locate_txt.setText(model.getAd3());
+//        holder.locate_txt.setText(model.getAd3());
         String url = model.getImg1_url();
 
         Glide.with(holder.itemView.getContext())
