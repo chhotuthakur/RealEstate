@@ -56,8 +56,8 @@
       android:layout_height="wrap_content"
       android:id="@+id/sel_img_btn"
       android:text="select Image ....."
-      android:backgroundTint="@color/black"
       android:background="@drawable/bg_edit"
+      android:padding="10dp"
       android:layout_below="@id/edt_plot_phone"
       android:layout_marginStart="10dp"/>
         <ImageView
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/post_data_btn"
             android:text="post Property"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#FF9800"
             android:background="@drawable/bg_edit"
             android:layout_below="@id/demo_img"
             android:layout_marginStart="10dp"

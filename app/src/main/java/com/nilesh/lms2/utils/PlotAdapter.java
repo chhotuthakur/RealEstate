@@ -1,6 +1,7 @@
 package com.nilesh.lms2.utils;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.nilesh.lms2.R;
+import com.nilesh.lms2.fragments.HomeFragment;
 import com.nilesh.lms2.models.PlotModel;
 
 public class PlotAdapter extends FirebaseRecyclerAdapter<PlotModel,PlotAdapter.ViewHolder> {
@@ -32,12 +34,15 @@ public class PlotAdapter extends FirebaseRecyclerAdapter<PlotModel,PlotAdapter.V
 
 //  TODO:      Glide.with().load(uploadCurrent.getmImageUrl()).into(holder.postImageView);
         holder.title_txt.setText(model.getTitle());
-//        holder.locate_txt.setText(model.getAd3());
-        String url = model.getImg1_url();
+        holder.locate_txt.setText(model.getPhone());
+        //String url = model.getImg1_url();
 
-        Glide.with(holder.itemView.getContext())
-                .load(url)
-                .into(holder.plot_images);
+//        Glide.with(holder.itemView.getContext())
+//                .load(model.getImg1_url())
+//                .into(holder.plot_images);
+
+        Glide.with(holder.itemView.getContext()).load(model.getImg1_url()).into(holder.plot_images);
+
 
     }
 

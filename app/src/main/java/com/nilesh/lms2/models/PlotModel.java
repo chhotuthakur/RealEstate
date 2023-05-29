@@ -1,13 +1,13 @@
 package com.nilesh.lms2.models;
 
 public class PlotModel {
-    String id, img1_url,title,desc,location,phone,author;
+    String ids, img1_url,title,desc,location,phone,author;
 
     public PlotModel() {
     }
 
     public PlotModel(String id, String img1_url,  String title, String desc, String location, String phone, String author) {
-        this.id = id;
+        this.ids = ids;
         this.img1_url = img1_url;
         this.title = title;
         this.desc = desc;
@@ -17,11 +17,19 @@ public class PlotModel {
     }
 
     public String getId() {
-        return id;
+        return ids;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.ids = ids;
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
     }
 
     public String getImg1_url() {

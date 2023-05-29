@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title_txt_plot"
             android:text="title"
+        android:layout_centerHorizontal="true"
             android:textSize="28sp"
             android:layout_below="@+id/plot_image"
         android:padding="8dp"/>

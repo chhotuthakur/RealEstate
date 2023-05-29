@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -17,7 +19,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.nilesh.lms2.R;
 import com.nilesh.lms2.activities.MainActivity;
 
@@ -30,11 +37,17 @@ public class PostFragment extends Fragment {
 
     EditText tit,desc,locat,price,phone;
     String id,img_uri;
-            Button selImg,postData;
-            ImageView imgv;
+    Button selImg,postData;
+    ImageView imgv;
     final int RESULT_LOAD_IMG =100;
-    private StorageReference storageReference;
+    StorageReference storageReference;
+    StorageReference imageref;
     private Uri selectedImageUri;
+    Uri fileUri;
+    FirebaseDatabase database;
+    ActivityResultLauncher<String> launcher;
+    String ids, img_url,titl,descrip,locate,phonesw,authors;
+    String imgyurl;
 
 
     public PostFragment() {
@@ -75,44 +88,81 @@ selImg.setOnClickListener(new View.OnClickListener() {
     }
 });
 
+postData.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        uploadImage(selectedImageUri);
+        titl = tit.getText().toString();
+        descrip = desc.getText().toString();
+        locate = locat.getText().toString();
+        phonesw = phone.getText().toString();
 
+        ids = phone.getText().toString();
 
+        uploadImage(selectedImageUri);
+
+    }
+});
 
         return v;
     }
+
     private void chooseImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, RESULT_LOAD_IMG);
+
+
+
     }
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMG && resultCode == RESULT_OK) {
             selectedImageUri = data.getData();
             imgv.setImageURI(selectedImageUri);
-            uploadImage();
+
+
+
+
+
+
         }
     }
-    private void uploadImage() {
-        if (selectedImageUri != null) {
-            StorageReference imageRef = storageReference.child("images/" + UUID.randomUUID().toString());
-            imageRef.putFile(selectedImageUri)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        Toast.makeText(getContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                        String imgurl = selectedImageUri.toString();
-                        tit.setText(imgurl);
 
-                    })
-                    .addOnFailureListener(e -> {
-                        Toast.makeText(getContext(), "Image upload failed", Toast.LENGTH_SHORT).show();
 
-                    });
-        }
-//        @Override
-//        public void onSuccess(Uri) {
-//                String imageUrl = downloadUri.toString();
-//        // Use the URL as needed
-//                        }
+    private void uploadImage(Uri selectedImageUri) {
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("plots");
+        String fid = UUID.randomUUID().toString();
+        StorageReference imageName = storageReference1.child(fid);
+
+        imageName.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                imageName.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        DatabaseReference db =FirebaseDatabase.getInstance().getReference("plots")
+                                .child(ids)
+                                .child("image1_url");
+                        db.setValue(uri.toString());
+                        db.getDatabase().getReference("plots").child(ids).child("title").setValue(titl);
+                        db.getDatabase().getReference("plots").child(ids).child("desc").setValue(descrip);
+                        db.getDatabase().getReference("plots").child(ids).child("phone").setValue(phonesw);
+                        db.getDatabase().getReference("plots").child(ids).child("location").setValue(locate);
+                        db.getDatabase().getReference("plots").child(ids).child("author").setValue(authors);
+                    }
+
+                });
+
+
+            }
+        });
+
     }
+
+
 }
